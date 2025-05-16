@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+#tablero {
+  display: inline-grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-gap: 2px;
+  margin: 20px auto;
+}
+
+.celda {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #888;
+  cursor: pointer;
+  user-select: none;
+}
+
+.celda.fija {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.controles {
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 12px;
+  margin: 5px;
+  font-size: 16px;
+}
+#selector-numeros {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.boton-num {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton-num.seleccionado {
+  background-color: #ffd700;
+}
+
+.celda.fija {
+  background-color: #e0e0e0;
+  pointer-events: none;
+  font-weight: bold;
+}
