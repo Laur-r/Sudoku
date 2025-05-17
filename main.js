@@ -15,21 +15,23 @@ function renderizarTablero() {
       celda.textContent = tablero[f][c] !== '-' ? tablero[f][c] : '';
       celda.dataset.f = f;
       celda.dataset.c = c;
+
       celda.addEventListener('click', () => {
-        const num = prompt(`Ingresa un número (1-9) para la celda [${f+1}, ${c+1}]`);
-        if (num && /^[1-9]$/.test(num)) {
-          if (hacerJugada(f, c, num)) {
+        if (numeroSeleccionado !== null) {
+          if (hacerJugada(f, c, numeroSeleccionado)) {
             renderizarTablero();
-            mensaje.textContent = `Insertado ${num} en [${f+1}, ${c+1}]`;
+            mensaje.textContent = `Insertado ${numeroSeleccionado} en [${f + 1}, ${c + 1}]`;
           } else {
-            mensaje.textContent = `Movimiento inválido en [${f+1}, ${c+1}]`;
+            mensaje.textContent = `Movimiento inválido en [${f + 1}, ${c + 1}]`;
           }
         }
       });
+
       divTablero.appendChild(celda);
     }
   }
 }
+
 
 document.getElementById('btn-deshacer').addEventListener('click', () => {
   if (deshacer()) {
@@ -49,19 +51,44 @@ document.getElementById('btn-rehacer').addEventListener('click', () => {
   }
 });
 
-fetch('tablero.txt')
-  .then(response => response.text())
-  .then(texto => {
-    const lineas = texto.trim().split('\n');
-    const config = lineas.map(l => l.trim().split(''));
-    cargarTableroInicial(config);
-    renderizarSelectorNumeros();
-    renderizarTablero();
-    mensaje.textContent = 'Tablero inicial cargado automáticamente.';
-  })
-  .catch(err => {
-    mensaje.textContent = 'Error cargando tablero inicial.';
-    console.error(err);
-  });
+// Cargar tablero inicial desde un archivo
+function cargarTableroDesdeArchivo(ruta = 'tablero.txt') {
+  fetch(ruta)
+    .then(response => response.text())
+    .then(texto => {
+      const lineas = texto.trim().split('\n');
+      const config = lineas.map(l => l.trim().split(''));
+      cargarTableroInicial(config);
+      renderizarSelectorNumeros();
+      renderizarTablero();
+      mensaje.textContent = 'Tablero inicial cargado automáticamente.';
+    })
+    .catch(err => {
+      mensaje.textContent = 'Error cargando tablero inicial.';
+      console.error(err);
+    });
+}
+
+let numeroSeleccionado = null;
+
+function renderizarSelectorNumeros() {
+  const selector = document.getElementById('selector-numeros');
+  selector.innerHTML = '';
+
+  for (let i = 1; i <= 9; i++) {
+    const boton = document.createElement('button');
+    boton.textContent = i;
+    boton.className = 'boton-num';
+    boton.addEventListener('click', () => {
+      numeroSeleccionado = i;
+      // Marcar el botón seleccionado
+      document.querySelectorAll('.boton-num').forEach(btn => btn.classList.remove('seleccionado'));
+      boton.classList.add('seleccionado');
+    });
+    selector.appendChild(boton);
+  }
+}
 
 renderizarTablero();
+cargarTableroDesdeArchivo();
+renderizarSelectorNumeros();

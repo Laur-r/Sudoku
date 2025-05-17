@@ -7,6 +7,41 @@ body {
 #tablero {
   display: inline-grid;
   grid-template-columns: repeat(9, 40px);
+  margin: 20px auto;
+}
+
+.celda {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #999;
+
+  /* Borde por defecto, se sobrescribirá dinámicamente */
+  box-sizing: border-box;
+}
+
+.borde-grueso-izq {
+  border-left: 3px solid black;
+}
+.borde-grueso-der {
+  border-right: 3px solid black;
+}
+.borde-grueso-arriba {
+  border-top: 3px solid black;
+}
+.borde-grueso-abajo {
+  border-bottom: 3px solid black;
+}
+
+
+
+#tablero {
+  display: inline-grid;
+  grid-template-columns: repeat(9, 40px);
   grid-gap: 2px;
   margin: 20px auto;
 }
@@ -35,9 +70,18 @@ button {
   padding: 8px 12px;
   margin: 5px;
   font-size: 16px;
+  background-color: pink;
+  border-radius: 5px;
+  border: pink
+  
 }
+
+button:hover {
+  background-color: #ff85c1; /* efecto al pasar el mouse */
+}
+
 #selector-numeros {
-  margin: 10px auto;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -47,14 +91,24 @@ button {
   width: 40px;
   height: 40px;
   font-size: 18px;
-  border: 2px solid #333;
+  font-weight: bold;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: pink;
+  transition: background-color 0.2s;
+}
+
+.boton-num:hover {
+  background-color:  #ff85c1;
 }
 
 .boton-num.seleccionado {
-  background-color: #ffd700;
+  background-color: #ff69b4;
+  color: white;
+  border-color: #ff69b4;
 }
+
 
 .celda.fija {
   background-color: #e0e0e0;
