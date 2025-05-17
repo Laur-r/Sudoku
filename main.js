@@ -1,6 +1,6 @@
 console.log("main.js cargado");
 
-import { tablero, hacerJugada, deshacer, rehacer } from './logica.js';
+import { tablero, hacerJugada, deshacer, rehacer, cargarTableroInicial } from './logica.js';
 
 const divTablero = document.getElementById('tablero');
 const mensaje = document.getElementById('mensaje');

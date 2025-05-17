@@ -81,3 +81,11 @@ export function estaCompleto() {
   }
   return true;
 }
+
+export function cargarTableroInicial(config) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      tablero[i][j] = config[i][j];
+    }
+  }
+}
