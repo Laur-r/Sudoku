@@ -8,16 +8,21 @@
 <body>
   <h1>Sudoku</h1>
 
-  <div id="tablero"></div>
-
-  <div class="controles">
-    <button id="btn-deshacer">Deshacer jugada</button>
-    <button id="btn-rehacer">Rehacer jugada</button>
-    <p id="mensaje"></p>
-  </div>
-  <div id="numeros">
-    <p>Selecciona un número:</p>
-    <div id="selector-numeros"></div>
+  <div class="contenedor-principal">
+    <div id="tablero"></div>
+    
+    <div class="panel-derecho">
+      <div id="numeros">
+        <p>Selecciona un número:</p>
+        <div id="selector-numeros"></div>
+      </div>
+      
+      <div class="controles">
+        <button id="btn-deshacer">Deshacer jugada</button>
+        <button id="btn-rehacer">Rehacer jugada</button>
+        <p id="mensaje"></p>
+      </div>
+    </div>
   </div>
 
   <script type="module" src="main.js"></script>
