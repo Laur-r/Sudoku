@@ -130,3 +130,44 @@ h1 {
   font-size: 14px;
   color: #666;
 }
+
+.celda.error {
+  background-color:  #ff94c9;
+  animation: shake 0.10s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-3px); }
+  40%, 80% { transform: translateX(3px); }
+}
+
+/* Agrega esto a tu CSS */
+.celda-sugerida {
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 0 3px #ff94c9;
+  position: relative;
+}
+
+.celda-sugerida::after {
+  content: "SUGERIDA";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 10px;
+  color:  #ff94c9;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.numero-sugerido {
+  background-color: #ff94c9 !important;
+  color: white !important;
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
